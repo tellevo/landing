@@ -8,12 +8,9 @@ export default component$(() => {
 
             <p><strong>Términos y Condiciones de uso </strong>&nbsp;</p>
 
-
-
-            <ol class="ml-3">
+            <ol>
                 <li><strong>Aceptación</strong></li>
             </ol>
-
 
 
             <p>1.1 Los Términos y Condiciones de uso de este “sistema”, “plataforma” o “aplicación”, en adelante “<em>TE LLEVO APP</em>”, que regulan el acceso y/o navegación en el portal, atribuye la condición de Usuario de los mismos e implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en los presentes Términos y Condiciones de Uso.</p>
@@ -32,7 +29,7 @@ export default component$(() => {
 
 
 
-            <ol start="2" class="wp-block-list">
+            <ol>
                 <li><strong><em>Misión de TE LLEVO APP</em></strong></li>
             </ol>
 
@@ -46,7 +43,7 @@ export default component$(() => {
 
 
 
-            <ol start="3" class="wp-block-list">
+            <ol>
                 <li><strong>Acceso a los servicios</strong></li>
             </ol>
 
@@ -76,7 +73,7 @@ export default component$(() => {
 
 
 
-            <ol start="4" class="wp-block-list">
+            <ol>
                 <li><strong>Modos del servicio</strong></li>
             </ol>
 
@@ -122,7 +119,7 @@ export default component$(() => {
 
 
 
-            <ol start="5" class="wp-block-list">
+            <ol>
                 <li><strong>Obligaciones y responsabilidades</strong></li>
             </ol>
 
@@ -140,7 +137,7 @@ export default component$(() => {
 
 
 
-            <ol start="6" class="wp-block-list">
+            <ol>
                 <li><strong>Costes del servicio</strong></li>
             </ol>
 
@@ -162,8 +159,8 @@ export default component$(() => {
 
 
 
-            <ol start="7" class="wp-block-list">
-                <li><strong>Medio de pago y control de saldo</strong></li>
+            <ol>
+                <li><strong>Medio de pago y controlde saldo</strong></li>
             </ol>
 
 
@@ -176,7 +173,7 @@ export default component$(() => {
 
 
 
-            <ol start="8" class="wp-block-list">
+            <ol>
                 <li><strong>Canal de reclamos, denuncias (y/o consultas)</strong></li>
             </ol>
 
@@ -190,7 +187,7 @@ export default component$(() => {
 
 
 
-            <ol start="9" class="wp-block-list">
+            <ol>
                 <li><strong>Legislación aplicable</strong></li>
             </ol>
 
@@ -224,7 +221,7 @@ export default component$(() => {
 
 
 
-            <ol start="1" class="wp-block-list">
+            <ol>
                 <li><strong>Objetivo</strong></li>
             </ol>
 
@@ -234,7 +231,7 @@ export default component$(() => {
 
 
 
-            <ol start="2" class="wp-block-list">
+            <ol>
                 <li><strong>Información que recopilamos</strong></li>
             </ol>
 
@@ -264,7 +261,7 @@ export default component$(() => {
 
 
 
-            <ol start="3" class="wp-block-list">
+            <ol>
                 <li><strong>Uso de la información</strong></li>
             </ol>
 
@@ -278,7 +275,7 @@ export default component$(() => {
 
 
 
-            <ul class="wp-block-list">
+            <ul >
                 <li>Facilitar la gestión logística de los Servicios entre los Usuarios Registrados;</li>
 
 
@@ -308,7 +305,7 @@ export default component$(() => {
 
 
 
-            <ul class="wp-block-list">
+            <ul >
                 <li>Envío de mensajes y confirmaciones respecto de las rutas que publiquen los Conductores, con el fin de optimizar el servicio de transporte y proporcionar mejores medidas de seguridad;</li>
 
 
@@ -322,7 +319,7 @@ export default component$(() => {
 
 
 
-            <ul class="wp-block-list">
+            <ul >
                 <li>“TE LLEVO APP” se abstiene a compartir, transferir o divulgar, sin consentimiento previo del Usuario Registrado, sus datos personales con terceros, salvo que la ley o un mandato judicial así lo requieran; o para proteger los derechos o bienes de “TE LLEVO APP” o de sus clientes; o que dicha transferencia esté prevista en la legislación aplicable. Los datos personales sólo serán utilizados para los fines mencionados en los párrafos anteriores.</li>
             </ul>
 
@@ -332,7 +329,7 @@ export default component$(() => {
 
 
 
-            <ol start="4" class="wp-block-list">
+            <ol>
                 <li><strong>Enlaces a otros sitios web</strong></li>
             </ol>
 
@@ -342,11 +339,11 @@ export default component$(() => {
 
 
 
-            <p>4.2 En lo relativo, al no ejercer control alguno, “TE LLEVO APP” no asume responsabilidad por el contenido, las Políticas de privacidad, las prácticas de los sitios web o servicios proporcionados por terceros.</p>
+            <p>4.2 En lo relativo, al no ejercer controlalguno, “TE LLEVO APP” no asume responsabilidad por el contenido, las Políticas de privacidad, las prácticas de los sitios web o servicios proporcionados por terceros.</p>
 
 
 
-            <ol start="5" class="wp-block-list">
+            <ol>
                 <li><strong>Modificaciones a la “Política de Privacidad”</strong></li>
             </ol>
 
