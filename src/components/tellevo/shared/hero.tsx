@@ -1,22 +1,33 @@
-import { component$, Slot } from '@builder.io/qwik';
+import { component$ } from "@builder.io/qwik";
+import { smoothScroll } from "~/components/header/scroll";
+import { YouTubeVideo } from "~/components/youtube/tellevo";
 
 // Define las props que el componente aceptará
 interface ContenidoProps {
-  texto: string;      // Texto del botón
+  texto: string; // Texto del botón
 }
 
 export default component$((props: ContenidoProps) => {
   return (
-    <section class="text-white">
-      <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-          <div class="md:w-1/2">
-            <div class="text-3xl font-bold text-[#1054F1] p-3">
+    <section class="relative overflow-hidden bg-gradient-to-br from-gray-900 to-blue-900 py-20">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2 space-y-8 relative z-10">
+            <h1 class="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               {props.texto}
+            </h1>
+            <div class="space-y-4">
+              <button onClick$={() => smoothScroll("descarga")} class="bg-cyan-500 hover:bg-cyan-400 px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-glow">
+                Descarga la App
+              </button>
             </div>
           </div>
-          <div class="md:w-1/2">
-            <Slot />
+          <div class="md:w-1/2 relative">
+            <div class="absolute inset-0 bg-blue-500/10 rounded-2xl backdrop-blur-xl"></div>
+            <YouTubeVideo
+              videoId="i9sYJT33eyA"
+              class="rounded-2xl transform perspective-1000 rotate-x-5"
+            />
           </div>
         </div>
       </div>

@@ -1,28 +1,31 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-//import AppStoreImg from '/src/assets/app-store.svg?jsx';
-//import PlayStoreImg from '~/assets/play-store.svg?jsx';
-import Hero from '~/components/tellevo/shared/hero';
-import Features from '~/components/tellevo/shared/features';
-import Beneficios from '~/components/tellevo/shared/beneficios';
+import Hero from "~/components/tellevo/shared/hero";
+import Features from "~/components/tellevo/shared/features";
+import Beneficios from "~/components/tellevo/shared/beneficios";
 import Inscripcion from "~/components/tellevo/empresa/inscripcion";
 import Ranking from "~/components/tellevo/empresa/ranking";
-import { YouTubeVideo } from '~/components/youtube/tellevo';
-import InformeCo2Img from '~/assets/informe-C02-TeLlevo.png?jsx';
+import { YouTubeVideo } from "~/components/youtube/tellevo";
+import InformeCo2Img from "~/assets/informe-C02-TeLlevo.png?jsx";
 import { ListadoBeneficios } from "~/components/tellevo/empresa/secciones/listado-beneficios";
-import BeneficiosImg from '~/assets/beneficios.png?jsx';
+import BeneficiosImg from "~/assets/beneficios.png?jsx";
+import Formulario_inscripcion from "~/components/tellevo/empresa/formulario_inscripcion";
+import Empresas from "~/components/tellevo/shared/empresas";
+import { FCarro } from "~/components/tellevo/widgets/fcarousel";
+import Descarga_app from "~/components/tellevo/empresa/descarga_app";
 
 export default component$(() => {
-
   return (
     <>
       {/* Hero */}
-      <Hero texto="Somos la aplicación que
+      <Hero
+        texto="Somos la aplicación que
               impulsa la sostenibilidad
               empresarial, facilitando el
               transporte seguro y
               asequible para tus
-              colaboradores">
+              colaboradores"
+      >
         <YouTubeVideo videoId="i9sYJT33eyA" />
       </Hero>
 
@@ -36,7 +39,9 @@ export default component$(() => {
                             Demuestra tu compromixo con el medio ambiente y la
                             sostenibilidad empresarial."
       >
-        <InformeCo2Img />
+        <div class="relative inline-block custom-image-border">
+          <InformeCo2Img class="w-full h-auto rounded-lg relative z-10" />
+        </div>
       </Features>
 
       {/* Benefits */}
@@ -52,17 +57,24 @@ export default component$(() => {
 
       {/* Ranking */}
       <Ranking />
-
+      <Formulario_inscripcion />
+      <Empresas >
+        <FCarro />
+      </Empresas>
+      <section id="descarga">
+      <Descarga_app></Descarga_app>
+      </section>
     </>
   );
 });
 
 export const head: DocumentHead = {
-  title: 'Tellevo - Viajes interurbanos seguros en Chile',
+  title: "Tellevo - Viajes interurbanos seguros en Chile",
   meta: [
     {
-      name: 'description',
-      content: 'Conectamos pasajeros con conductores confiables para viajes interurbanos en Chile. Descarga la app y viaja seguro.',
+      name: "description",
+      content:
+        "Conectamos pasajeros con conductores confiables para viajes interurbanos en Chile. Descarga la app y viaja seguro.",
     },
   ],
 };

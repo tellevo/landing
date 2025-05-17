@@ -27,27 +27,30 @@
   "devDependencies": {
     "@builder.io/qwik": "^1.12.1",
     "@builder.io/qwik-city": "^1.12.1",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@qwik-ui/headless": "^0.6.5",
     "@types/eslint": "8.56.10",
+    "@types/google.maps": "^3.58.1",
     "@types/node": "20.14.11",
     "@typescript-eslint/eslint-plugin": "7.16.1",
     "@typescript-eslint/parser": "7.16.1",
+    "autoprefixer": "^10.4.14",
     "eslint": "8.57.0",
     "eslint-plugin-qwik": "^1.12.1",
+    "flowbite-qwik": "^0.38.3",
+    "flowbite-qwik-icons": "^0.1.9",
+    "postcss": "^8.4.31",
     "prettier": "3.3.3",
+    "qwik-icons": "^0.0.1",
+    "tailwindcss": "^3.3.3",
     "typescript": "5.4.5",
     "undici": "*",
     "vite": "5.3.5",
     "vite-tsconfig-paths": "^4.2.1",
-    "wrangler": "^3.0.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.3",
-    "@qwik-ui/headless": "^0.6.5",
-    "flowbite-qwik": "^0.38.3",
-    "flowbite-qwik-icons": "^0.1.9"
+    "wrangler": "^3.0.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@googlemaps/js-api-loader": "^1.16.8",
     "flowbite": "^3.1.2"
   }
 }

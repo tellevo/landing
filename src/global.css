@@ -46,3 +46,34 @@ body {
   cursor: not-allowed;
   opacity: 0.7;
 }
+
+
+.custom-image-border::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  border-right: 8px solid white;
+  border-bottom: 8px solid white;
+  border-radius: 0 0 0.5rem 0;
+}
+
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(5px); }
+}
+
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
