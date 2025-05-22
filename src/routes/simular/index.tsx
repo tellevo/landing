@@ -1,116 +1,185 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$, useSignal, $ } from "@builder.io/qwik";
+
 import MapLoader from "~/components/maps/map-loader";
 import AutocompleteInput from "~/components/maps/autocomplete-input";
 
+const formatNumber = (value: number) => {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
+// Fórmulas de cálculo de tarifas
+const calculateDriverRate = (km: number) => {
+  if (km < 7) return 846;
+  if (km < 8) return 966;
+  if (km < 9) return 1080;
+  if (km < 10) return 1188;
+  if (km < 11) return 1290;
+  if (km < 12) return 1386;
+  if (km < 13) return 1476;
+  if (km < 14) return 1560;
+  if (km < 15) return 1638;
+  if (km < 16) return 1710;
+  if (km < 17) return 1776;
+  if (km < 18) return 1836;
+  if (km < 19) return 1890;
+  if (km < 20) return 1938;
+  if (km < 21) return 1980;
+  if (km < 22) return 2016;
+  if (km < 23) return 2046;
+  if (km < 24) return 2070;
+  if (km < 25) return 2088;
+  if (km < 26) return 2100;
+  if (km < 27) return 2106;
+  if (km < 28) return 2106;
+  if (km < 29) return 2100;
+  if (km < 30) return 2088;
+  if (km < 35) return 2040;
+  if (km < 40) return 2340;
+  if (km < 45) return 2640;
+  if (km < 50) return 2940;
+  return km * 150 * 0.4;
+};
+
 export default component$(() => {
-  const email = useSignal("");
   const start = useSignal("");
   const end = useSignal("");
   const showMap = useSignal(false);
-  const contactar = useSignal(false);
-  
-  // Reemplaza con tu API key de Google Maps
-  const apiKey = "AIzaSyCrpHDFma0qoJrARLM_r_XVXvfU0cCKxEk";
+  const isLoading = useSignal(false);
+  const routeInfo = useSignal<{
+    startAddress: string;
+    endAddress: string;
+    distance: string;
+    distanceValue: number;
+  } | null>(null);
+  const error = useSignal("");
+
+  const handleRouteCalculated = $((response: google.maps.DirectionsResult) => {
+    if (response.routes[0]?.legs[0]) {
+      const leg = response.routes[0].legs[0];
+      routeInfo.value = {
+        startAddress: leg.start_address,
+        endAddress: leg.end_address,
+        distance: leg.distance?.text || "0 km",
+        distanceValue: leg.distance?.value || 0,
+      };
+    }
+    isLoading.value = false;
+  });
+
+  const handleSubmit = $(async () => {
+    if (!start.value || !end.value) {
+      error.value = "Por favor, completa los campos de origen y destino";
+      return;
+    }
+    error.value = "";
+    isLoading.value = true;
+    showMap.value = true;
+  });
 
   return (
-    <section class="relative pb-20 bg-gradient-to-br from-gray-50 to-blue-50 overflow-hidden">
-      {/* Efecto de conexión superior */}
-      <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-20"></div>
-
-      <div class="container mx-auto px-6 max-w-4xl">
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200/80 p-8 md:p-12">
-          {/* Encabezado */}
-          <div class="text-center mb-10">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+    <section class="min-h-screen bg-gradient-to-br from-gray-100 to-blue-100 py-4 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto max-w-5xl">
+        <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-12">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
               <span class="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                Simula tu Ahorro como conductor
+                Simula tu Ahorro como Conductor
               </span>
             </h2>
-            <p class="text-lg text-gray-600">
-              Comparte un viaje cuando quieras
+            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              Calcula cuánto puedes ahorrar compartiendo tu viaje con nuestra herramienta
             </p>
           </div>
 
-          {/* Formulario de simulación */}
-          <form 
-            class="space-y-6" 
-            preventdefault:submit 
-            onSubmit$={() => showMap.value = true}
-          >
-            {/* Email */}
-            <div>
-              <label
-                for="email"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                bind:value={email}
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 text-cyan-600"
-                placeholder="Ingresa email"
-              />
-            </div>
-
-            {/* Origen y Destino con autocompletado */}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <AutocompleteInput
-                id="origen"
-                label="Inicio"
-                placeholder="Ingresa tu origen"
-                apiKey={apiKey}
-                onPlaceSelected$={(place) => start.value = place.formatted_address || ""}
-              />
-              <AutocompleteInput
-                id="destino"
-                label="Final"
-                placeholder="Ingresa tu destino"
-                apiKey={apiKey}
-                onPlaceSelected$={(place) => end.value = place.formatted_address || ""}
-              />
-            </div>
-
-            {/* Mostrar mapa cuando se hace submit */}
-            {showMap.value && (
-              <div class="pt-4">
-                <MapLoader apiKey={apiKey} start={start.value} end={end.value} />
+          <form class="space-y-6" preventdefault:submit onSubmit$={handleSubmit}>
+            {error.value && (
+              <div class="p-4 bg-red-50 text-red-700 rounded-xl border border-red-200">
+                {error.value}
               </div>
             )}
 
-            {/* Mensaje con Checkbox */}
-            <div class="pt-4 flex items-center justify-center space-x-2">
-              <input
-                type="checkbox"
-                id="contactar-checkbox"
-                bind:checked={contactar}
-                class="h-5 w-5 text-cyan-600 rounded focus:ring-cyan-500 border-gray-300"
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <AutocompleteInput
+                id="origen"
+                label="Origen"
+                placeholder="Ingresa tu punto de partida"
+                onPlaceSelected$={(place) => (start.value = place.formatted_address || "")}
               />
-              <label
-                for="contactar-checkbox"
-                class="text-gray-500 italic cursor-pointer"
-              >
-                Favor contactar cuando esté disponible la App.
-              </label>
+              <AutocompleteInput
+                id="destino"
+                label="Destino"
+                placeholder="Ingresa tu destino final"
+                onPlaceSelected$={(place) => (end.value = place.formatted_address || "")}
+              />
             </div>
 
-            {/* Botones */}
+            {showMap.value && (
+              <div class="space-y-6">
+                <div class="relative">
+                  {isLoading.value && (
+                    <div class="absolute inset-0 bg-gray-100 bg-opacity-50 flex items-center justify-center rounded-xl">
+                      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-600"></div>
+                    </div>
+                  )}
+                  <MapLoader
+                    start={start.value}
+                    end={end.value}
+                    onRouteCalculated$={handleRouteCalculated}
+                  />
+                </div>
+
+                {routeInfo.value && !isLoading.value && (
+                  <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Resultados de tu Simulación</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                      <div>
+                        <p class="text-sm text-gray-500 font-medium">Origen</p>
+                        <p class="text-gray-800">{routeInfo.value.startAddress}</p>
+                      </div>
+                      <div>
+                        <p class="text-sm text-gray-500 font-medium">Destino</p>
+                        <p class="text-gray-800">{routeInfo.value.endAddress}</p>
+                      </div>
+                      <div>
+                        <p class="text-sm text-gray-500 font-medium">Distancia</p>
+                        <p class="text-gray-800">{routeInfo.value.distance}</p>
+                      </div>
+                    </div>
+                    <div class="border-t pt-4">
+                      <h4 class="text-lg font-semibold text-gray-800 mb-3">Tarifa Estimada</h4>
+                      {[1].map((passengers) => {
+                        const km = routeInfo.value!.distanceValue / 1000;
+                        const tripValue = calculateDriverRate(km);
+                        return (
+                          <div key={passengers} class="mb-3">
+                            <p class="text-2xl text-cyan-600 font-bold">
+                              ${formatNumber(Math.round(tripValue))}
+                            </p>
+                            <p class="text-sm text-gray-500 mt-1">
+                              Precio estimado para {km.toFixed(1)} km
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             <div class="flex flex-col sm:flex-row justify-center gap-4 pt-6">
               <button
                 type="submit"
-                class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg w-full sm:w-auto"
+                disabled={isLoading.value}
+                class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
               >
-                Simular Ahorro
+                {isLoading.value ? "Calculando..." : "Calcular Tarifa"}
               </button>
-              
+             
             </div>
           </form>
         </div>
       </div>
-
-      {/* Efecto de conexión inferior */}
-      <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-20"></div>
     </section>
   );
 });
