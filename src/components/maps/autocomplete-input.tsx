@@ -1,5 +1,5 @@
 /* eslint-disable qwik/valid-lexical-scope */
-import { component$, useSignal, useVisibleTask$, $ } from '@builder.io/qwik';
+import { component$, useSignal, useVisibleTask$, $, useTask$, noSerialize, type NoSerialize } from '@builder.io/qwik';
 import { getGoogleMapsLoader } from '~/utils/google-map-loader';
 
 interface AutocompleteInputProps {
@@ -7,63 +7,78 @@ interface AutocompleteInputProps {
   label: string;
   placeholder: string;
   onPlaceSelected$?: (place: google.maps.places.PlaceResult) => void;
+  minChars?: number; // minimum characters before initializing autocomplete
 }
 
-export default component$<AutocompleteInputProps>(({ id, label, placeholder, onPlaceSelected$ }) => {
-  const containerRef = useSignal<HTMLDivElement>();
+export default component$<AutocompleteInputProps>(({ id, label, placeholder, onPlaceSelected$, minChars: minCharsProp }) => {
+  const inputRef = useSignal<HTMLInputElement>();
   const mapLoaded = useSignal(false);
   const error = useSignal<string | null>(null);
+  const minChars = typeof minCharsProp === 'number' ? minCharsProp : 3;
+  const initialized = useSignal(false);
+  const autocomplete = useSignal<NoSerialize<google.maps.places.Autocomplete> | null>(null);
 
-  const handlePlaceSelected = $(async (place: google.maps.places.PlaceResult) => {
+  const handlePlaceSelected = $(async () => {
+    const ac = autocomplete.value;
+    if (!ac) return;
+    const place = ac.getPlace();
     if (onPlaceSelected$ && place) {
-      await onPlaceSelected$(place);
+      const fallbackAddress = place.formatted_address || place.name || inputRef.value?.value || '';
+      const selected = { ...place, formatted_address: place.formatted_address ?? fallbackAddress } as google.maps.places.PlaceResult;
+      await onPlaceSelected$(selected);
     }
   });
 
   useVisibleTask$(async ({ cleanup }) => {
-    if (!containerRef.value || mapLoaded.value) return;
-
     const loader = getGoogleMapsLoader();
-
     try {
-      // Ensure the Places library is loaded
       await loader.load();
       await google.maps.importLibrary('places');
       mapLoaded.value = true;
-
-      const autocompleteOptions = {
-        componentRestrictions: {
-          id: id,
-          placeholder: placeholder,
-          country: "CL"
-        }
-      };
-
-      // Create the new Place Autocomplete Element (web component)
-      const pac = new google.maps.places.PlaceAutocompleteElement(autocompleteOptions);
-
-      // Append into our container
-      containerRef.value.appendChild(pac);
-
-      // Listen for place changes
-      const onChange = () => {
-        // According to docs, the selected place is available on the `value` property
-        const place = (pac as unknown as { value?: google.maps.places.PlaceResult }).value;
-        if (place) {
-          handlePlaceSelected(place);
-        }
-      };
-      pac.addEventListener('gmpxplacechange', onChange);
-
-      // Cleanup listeners and element on unmount
-      cleanup(() => {
-        pac.removeEventListener('gmpxplacechange', onChange);
-        pac.remove?.();
-      });
+      console.debug('[AutocompleteInput] Places library loaded');
     } catch (err) {
       console.error('Error al cargar Google Places:', err);
       error.value = 'Error al cargar el autocompletado';
+      return;
     }
+
+    const tryInit = () => {
+      const val = inputRef.value?.value ?? '';
+      if (!initialized.value && val.length >= minChars && inputRef.value) {
+        if (!(globalThis as any).google?.maps?.places) {
+          console.warn('[AutocompleteInput] google.maps.places is not available yet');
+          return;
+        }
+        // Initialize autocomplete only after minChars
+        autocomplete.value = noSerialize(new google.maps.places.Autocomplete(inputRef.value, {
+          fields: ['formatted_address', 'geometry', 'name', 'address_components'],
+          componentRestrictions: { country: 'CL' },
+          types: ['geocode'],
+        }));
+        console.debug('[AutocompleteInput] Autocomplete initialized (minChars met)');
+        const ac = autocomplete.value as unknown as { addListener?: (evt: string, cb: () => void) => void };
+        ac?.addListener?.('place_changed', () => handlePlaceSelected());
+        initialized.value = true;
+      }
+    };
+
+    const onInput = () => tryInit();
+    const onFocus = () => tryInit();
+    const onPaste = () => setTimeout(tryInit, 0);
+
+    inputRef.value?.addEventListener('input', onInput);
+    inputRef.value?.addEventListener('focus', onFocus);
+    inputRef.value?.addEventListener('paste', onPaste);
+
+    cleanup(() => {
+      inputRef.value?.removeEventListener('input', onInput);
+      inputRef.value?.removeEventListener('focus', onFocus);
+      inputRef.value?.removeEventListener('paste', onPaste);
+    });
+  });
+
+  useTask$(({ track }) => {
+    track(() => error.value);
   });
 
   return (
@@ -71,8 +86,16 @@ export default component$<AutocompleteInputProps>(({ id, label, placeholder, onP
       <label for={id} class="block text-sm font-medium text-gray-700 mb-1">
         {label}
       </label>
-      {/* Container for the PlaceAutocompleteElement */}
-      <div ref={containerRef} class="w-full" />
+      <input
+        id={id}
+        ref={inputRef}
+        type="text"
+        placeholder={placeholder}
+        class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        autoComplete="off"
+        inputMode="text"
+      />
+      <p class="mt-1 text-xs text-gray-500">Escribe al menos {minChars} caracteres para ver sugerencias.</p>
       {error.value && (
         <p class="mt-1 text-sm text-red-600">{error.value}</p>
       )}

@@ -103,16 +103,17 @@ export default component$(() => {
                 id="origen"
                 label="Origen"
                 placeholder="Ingresa tu punto de partida"
+                minChars={3}
                 onPlaceSelected$={(place) => (start.value = place.formatted_address || "")}
               />
               <AutocompleteInput
                 id="destino"
                 label="Destino"
                 placeholder="Ingresa tu destino final"
+                minChars={3}
                 onPlaceSelected$={(place) => (end.value = place.formatted_address || "")}
               />
             </div>
-
             {showMap.value && (
               <div class="space-y-6">
                 <div class="relative">
