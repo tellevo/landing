@@ -1,6 +1,7 @@
 import { component$ } from '@builder.io/qwik';
 import ImgPreviewApp from '~/assets/preview-descarga.png?jsx';
-import { IconAppleSolid, IconGoogleSolid } from 'flowbite-qwik-icons';
+import GooglePlayBadge from '~/assets/google-play.png?jsx';
+import AppStoreBadge from '~/assets/app-store.png?jsx';
 
 export default component$(() => {
   return (
@@ -32,7 +33,7 @@ export default component$(() => {
                 transition-all hover:scale-105 hover:shadow-lg
                 text-lg font-medium
               ">
-                <IconAppleSolid class="text-xl" />
+                <AppStoreBadge class="h-8 w-auto" />
                 App Store
               </a>
               
@@ -42,7 +43,7 @@ export default component$(() => {
                 transition-all hover:scale-105 hover:shadow-lg
                 text-lg font-medium
               ">
-                <IconGoogleSolid class="text-xl" />
+                <GooglePlayBadge class="h-8 w-auto" />
                 Google Play
               </a>
             </div>
