@@ -9,11 +9,11 @@ interface ContenidoProps {
 
 export default component$((props: ContenidoProps) => {
   return (
-    <section class="relative overflow-hidden bg-gradient-to-br from-gray-900 to-blue-900 py-20">
+    <section class="relative overflow-hidden py-20">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2 space-y-8 relative z-10">
-            <h1 class="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            <h1 class="text-5xl font-bold text-[#1054F1] font-sans">
               {props.texto}
             </h1>
             <div class="space-y-4">
