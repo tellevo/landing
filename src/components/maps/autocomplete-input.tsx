@@ -10,39 +10,55 @@ interface AutocompleteInputProps {
 }
 
 export default component$<AutocompleteInputProps>(({ id, label, placeholder, onPlaceSelected$ }) => {
-  const inputRef = useSignal<HTMLInputElement>();
+  const containerRef = useSignal<HTMLDivElement>();
   const mapLoaded = useSignal(false);
   const error = useSignal<string | null>(null);
 
   const handlePlaceSelected = $(async (place: google.maps.places.PlaceResult) => {
-    if (onPlaceSelected$ && place.formatted_address) {
+    if (onPlaceSelected$ && place) {
       await onPlaceSelected$(place);
     }
   });
 
   useVisibleTask$(async ({ cleanup }) => {
-    if (!inputRef.value || mapLoaded.value) return;
+    if (!containerRef.value || mapLoaded.value) return;
 
     const loader = getGoogleMapsLoader();
 
     try {
+      // Ensure the Places library is loaded
       await loader.load();
+      await google.maps.importLibrary('places');
       mapLoaded.value = true;
 
-      const autocomplete = new google.maps.places.Autocomplete(inputRef.value, {
-        componentRestrictions: { country: 'cl' },
-        fields: ['formatted_address', 'geometry', 'name'],
-      });
+      const autocompleteOptions = {
+        componentRestrictions: {
+          id: id,
+          placeholder: placeholder,
+          country: "CL"
+        }
+      };
 
-      autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
-        if (place && place.geometry) {
+      // Create the new Place Autocomplete Element (web component)
+      const pac = new google.maps.places.PlaceAutocompleteElement(autocompleteOptions);
+
+      // Append into our container
+      containerRef.value.appendChild(pac);
+
+      // Listen for place changes
+      const onChange = () => {
+        // According to docs, the selected place is available on the `value` property
+        const place = (pac as unknown as { value?: google.maps.places.PlaceResult }).value;
+        if (place) {
           handlePlaceSelected(place);
         }
-      });
+      };
+      pac.addEventListener('gmpxplacechange', onChange);
 
+      // Cleanup listeners and element on unmount
       cleanup(() => {
-        google.maps.event.clearInstanceListeners(autocomplete);
+        pac.removeEventListener('gmpxplacechange', onChange);
+        pac.remove?.();
       });
     } catch (err) {
       console.error('Error al cargar Google Places:', err);
@@ -55,13 +71,8 @@ export default component$<AutocompleteInputProps>(({ id, label, placeholder, onP
       <label for={id} class="block text-sm font-medium text-gray-700 mb-1">
         {label}
       </label>
-      <input
-        ref={inputRef}
-        type="text"
-        id={id}
-        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-300 placeholder-gray-400 placeholder-opacity-100"
-        placeholder={placeholder}
-      />
+      {/* Container for the PlaceAutocompleteElement */}
+      <div ref={containerRef} class="w-full" />
       {error.value && (
         <p class="mt-1 text-sm text-red-600">{error.value}</p>
       )}
