@@ -6,7 +6,7 @@ export default component$(() => {
     <div class="container mx-auto p-4"> {/* Contenedor con ancho máximo y padding */}
       <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto"> {/* Tarjeta blanca */}
         {/* Título */}
-        <h1 class="text-3xl font-bold text-center text-blue-800 mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-[#1054F1] mb-8">
           Inscribe a tu empresa en TeLlevo App
         </h1>
 

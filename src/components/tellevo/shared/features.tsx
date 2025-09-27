@@ -37,11 +37,9 @@ export default component$((props: ContenidoProps) => {
       </div>
 
       <div class="container mx-auto px-4 relative z-10">
-        {/* Título con efecto gradiente pero más sutil */}
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800">
-          <span class="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
-            {props.titulo}
-          </span>
+        {/* Título principal */}
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1054F1]">
+          {props.titulo}
         </h2>
 
         <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -57,7 +55,7 @@ export default component$((props: ContenidoProps) => {
           <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div class="flex items-center mb-6">
               <IconBulb />
-              <h3 class="text-2xl font-bold text-gray-800 ml-3">Innovación Sostenible</h3>
+              <h3 class="text-2xl md:text-3xl font-bold text-[#1054F1] ml-3">Innovación Sostenible</h3>
             </div>
             
             <p class="text-gray-600 text-lg leading-relaxed mb-6">

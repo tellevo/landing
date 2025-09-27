@@ -80,7 +80,7 @@ export default component$(() => {
                                 
                                 {/* Información */}
                                 <div class="p-6">
-                                    <h3 class="text-2xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                                    <h3 class="text-2xl font-bold text-[#1054F1] mb-1">{member.name}</h3>
                                     <p class="text-blue-600 font-medium mb-3">{member.position}</p>
                                     <a 
                                         href={`mailto:${member.email}`} 

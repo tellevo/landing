@@ -13,10 +13,8 @@ export default component$(() => {
                 <div class="flex flex-col md:flex-row items-stretch gap-10 md:gap-16">
                     {/* Columna de texto - alineada con el estilo de los otros componentes */}
                     <div class="md:w-1/2 flex flex-col justify-center space-y-8">
-                        <h2 class="text-5xl font-extrabold text-gray-900 leading-tight">
-                            <span class="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                                Inscribe a tu Empresa en TeLlevo App
-                            </span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold leading-tight text-[#1054F1]">
+                            Inscribe a tu Empresa en TeLlevo App
                         </h2>
                         
                         <p class="text-lg text-gray-600">

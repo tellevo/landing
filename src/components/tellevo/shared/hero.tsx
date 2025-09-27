@@ -9,20 +9,20 @@ interface ContenidoProps {
 
 export default component$((props: ContenidoProps) => {
   return (
-    <section class="relative overflow-hidden py-20">
+    <section class="relative overflow-hidden py-16 md:py-20">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2 space-y-8 relative z-10">
-            <h1 class="text-5xl font-bold text-[#1054F1] font-sans">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#1054F1] font-sans">
               {props.texto}
             </h1>
             <div class="space-y-4">
-              <button onClick$={() => smoothScroll("descarga")} class="bg-cyan-500 hover:bg-cyan-400 px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-glow">
+              <button onClick$={() => smoothScroll("descarga")} class="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-400 px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-glow">
                 Descarga la App
               </button>
             </div>
           </div>
-          <div class="md:w-1/2 relative">
+          <div class="md:w-1/2 relative w-full">
             <div class="absolute inset-0 bg-blue-500/10 rounded-2xl backdrop-blur-xl"></div>
             <YouTubeVideo
               videoId="i9sYJT33eyA"

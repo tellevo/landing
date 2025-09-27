@@ -6,7 +6,7 @@ export default component$(() => {
   return (
     <div class={['container', styles.hero]}>
       <ImgThunder class={styles['hero-image']} alt="Image thunder" />
-      <h1>
+      <h1 class="text-[#1054F1]">
         So <span class="highlight">fantastic</span>
         <br />
         to have <span class="highlight">you</span> here

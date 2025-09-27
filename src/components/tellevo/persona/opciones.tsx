@@ -23,7 +23,7 @@ export default component$(() => {
             <div class="bg-cyan-50 w-16 h-16 mx-auto rounded-lg flex items-center justify-center mb-4">
               <SocialImg class="w-10 h-10 object-contain" />
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Impacto Social</h3>
+            <h3 class="text-xl font-semibold text-[#1054F1] mb-2">Impacto Social</h3>
             <p class="text-gray-600">
               Mejorar tu calidad de vida al destinar menos tiempo a movilizarte.
             </p>
@@ -34,7 +34,7 @@ export default component$(() => {
             <div class="bg-blue-50 w-16 h-16 mx-auto rounded-lg flex items-center justify-center mb-4">
               <EconomicoImg class="w-10 h-10 object-contain" />
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Impacto Económico</h3>
+            <h3 class="text-xl font-semibold text-[#1054F1] mb-2">Impacto Económico</h3>
             <p class="text-gray-600">
               Entregamos asequibilidad económica a una nueva alternativa de transporte.
             </p>
@@ -45,7 +45,7 @@ export default component$(() => {
             <div class="bg-green-50 w-16 h-16 mx-auto rounded-lg flex items-center justify-center mb-4">
               <AmbientalImg class="w-10 h-10 object-contain" />
             </div>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Impacto Ambiental</h3>
+            <h3 class="text-xl font-semibold text-[#1054F1] mb-2">Impacto Ambiental</h3>
             <p class="text-gray-600">
               Aportamos al cuidado del medioambiente reduciendo autos en circulación.
             </p>

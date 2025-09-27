@@ -19,10 +19,8 @@ export default component$(() => {
 
                     {/* Columna de texto mejorada */}
                     <div class="md:w-1/2 flex flex-col justify-center space-y-8">
-                        <h3 class="text-5xl font-extrabold text-gray-900 leading-tight">
-                            <span class="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                                Sé parte del ranking de empresas sostenibles
-                            </span>
+                        <h3 class="text-4xl md:text-5xl font-extrabold leading-tight text-[#1054F1]">
+                            Sé parte del ranking de empresas sostenibles
                         </h3>
                         
                         <p class="text-xl text-gray-600">
@@ -30,7 +28,7 @@ export default component$(() => {
                         </p>
 
                         <div class="space-y-6">
-                            <h4 class="text-2xl font-semibold text-gray-800">Beneficios del Ranking para Empresas:</h4>
+                            <h4 class="text-2xl font-semibold text-[#1054F1]">Beneficios del Ranking para Empresas:</h4>
                             <ul class="space-y-4">
                                 {[
                                     {

@@ -16,7 +16,7 @@ export default component$(() => {
 
           {/* Columna de contenido */}
           <div class="lg:w-1/2 text-center lg:text-left">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-[#1054F1] mb-6">
               Descarga nuestra aplicación
             </h2>
             

@@ -6,12 +6,12 @@ export default component$(() => {
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 class="text-xl font-bold mb-4">Tellevo</h3>
+            <h3 class="text-xl font-bold mb-4 text-[#1054F1]">Tellevo</h3>
             <p class="text-gray-400">Conectando pasajeros y conductores en todo Chile</p>
           </div>
           
           <div>
-            <h4 class="font-semibold mb-4">Compañía</h4>
+            <h4 class="font-semibold mb-4 text-[#1054F1]">Compañía</h4>
             <ul class="space-y-2">
               <li><a href="#" class="text-gray-400 hover:text-white">Sobre nosotros</a></li>
               <li><a href="#" class="text-gray-400 hover:text-white">Trabaja con nosotros</a></li>
@@ -20,7 +20,7 @@ export default component$(() => {
           </div>
           
           <div>
-            <h4 class="font-semibold mb-4">Legal</h4>
+            <h4 class="font-semibold mb-4 text-[#1054F1]">Legal</h4>
             <ul class="space-y-2">
               <li><a href="#" class="text-gray-400 hover:text-white">Términos y condiciones</a></li>
               <li><a href="#" class="text-gray-400 hover:text-white">Privacidad</a></li>
@@ -29,7 +29,7 @@ export default component$(() => {
           </div>
           
           <div>
-            <h4 class="font-semibold mb-4">Contacto</h4>
+            <h4 class="font-semibold mb-4 text-[#1054F1]">Contacto</h4>
             <ul class="space-y-2">
               <li class="text-gray-400">contacto@tellevo.cl</li>
               <li class="text-gray-400">+56 2 2123 4567</li>

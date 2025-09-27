@@ -44,7 +44,7 @@ export default component$(() => {
 
   return (
     <div class="container container-purple container-center">
-      <h2>
+      <h2 class="text-[#1054F1]">
         Time for a
         <br />
         <span class="highlight">qwik intro</span>?

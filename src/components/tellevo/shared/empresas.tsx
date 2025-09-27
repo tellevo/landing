@@ -9,10 +9,8 @@ export default component$(() => {
       <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-20"></div>
       
       <div class="container mx-auto px-4">
-        <h3 class="text-4xl font-bold text-center mb-16">
-          <span class="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
-            Apoyados por
-          </span>
+        <h3 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#1054F1]">
+          Apoyados por
         </h3>
         
         {/* Contenedor del carrusel con altura fija */}

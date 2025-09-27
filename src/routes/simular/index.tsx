@@ -130,7 +130,7 @@ export default component$(() => {
 
                 {routeInfo.value && !isLoading.value && (
                   <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Resultados de tu Simulación</h3>
+                    <h3 class="text-xl font-semibold text-[#1054F1] mb-4">Resultados de tu Simulación</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                       <div>
                         <p class="text-sm text-gray-500 font-medium">Origen</p>
@@ -146,7 +146,7 @@ export default component$(() => {
                       </div>
                     </div>
                     <div class="border-t pt-4">
-                      <h4 class="text-lg font-semibold text-gray-800 mb-3">Tarifa Estimada</h4>
+                      <h4 class="text-lg font-semibold text-[#1054F1] mb-3">Tarifa Estimada</h4>
                       {[1].map((passengers) => {
                         const km = routeInfo.value!.distanceValue / 1000;
                         const tripValue = calculateDriverRate(km);
