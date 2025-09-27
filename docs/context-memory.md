@@ -70,6 +70,22 @@
 - Email de contacto: `mailto:contacto@tellevoapp.cl` con `text-white hover:underline hover:opacity-90`.
 - Redes sociales: Facebook e Instagram (Font Awesome), con `target="_blank" rel="noopener"` y `hover:opacity-90`.
 
+## Sección Descarga App (botones de tiendas)
+- Ubicación: `src/components/tellevo/empresa/descarga_app.tsx`.
+- Layout implementado: Opción C (cuadrícula 2x2) con cuatro botones visibles.
+- Badges:
+  - App Store: `src/assets/app-store.png?jsx`
+  - Google Play: `src/assets/google-play.png?jsx`
+  - Tamaño aplicado: `h-8 w-auto` (se puede escalar a `md:h-10` si se requiere).
+- Accesibilidad y seguridad: cada enlace usa `target="_blank"`, `rel="noopener noreferrer"` y `aria-label` descriptivo.
+- Enlaces reales configurados:
+  - iOS Persona: `https://apps.apple.com/cl/app/te-llevo-app-personas/id6743946661`
+  - Android Persona: `https://play.google.com/store/apps/details?id=cl.tellevo.app.tellevo_pasajero`
+  - iOS Auto: `https://apps.apple.com/cl/app/te-llevo-app-auto/id6743774731`
+  - Android Auto: `https://play.google.com/store/apps/details?id=cl.tellevo.app.tellevo_conductor`
+- Etiquetas visibles de los botones: `iOS Persona`, `Android Persona`, `iOS Auto`, `Android Auto`.
+- Pendiente (opcional): agregar parámetros UTM a los enlaces (por ejemplo `utm_source=landing&utm_medium=button&utm_campaign=download`).
+
 ## Fundamentos técnicos verificados
 - Meta viewport presente en `src/components/router-head/router-head.tsx`.
 - Tailwind configurado en `tailwind.config.js` (sin tocar breakpoints), PostCSS activo (`postcss.config.js`).

@@ -25,26 +25,54 @@ export default component$(() => {
               Disponible en todas las plataformas móviles
             </p>
 
-            {/* Botones con iconos */}
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a href="#" class="
-                bg-black text-white px-6 py-3 rounded-lg
-                flex items-center justify-center gap-2
-                transition-all hover:scale-105 hover:shadow-lg
-                text-lg font-medium
-              ">
+            {/* Botones con iconos - Opción C (cuadrícula 2x2) */}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto lg:mx-0">
+              {/* iOS Persona */}
+              <a
+                href="https://apps.apple.com/cl/app/te-llevo-app-personas/id6743946661"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Descargar Persona en App Store"
+                class="bg-black text-white px-5 py-3 rounded-lg flex items-center gap-3 transition-all hover:scale-105 hover:shadow-lg"
+              >
                 <AppStoreBadge class="h-8 w-auto" />
-                App Store
+                <span class="text-sm font-medium">iOS Persona</span>
               </a>
-              
-              <a href="#" class="
-                bg-[#0F9D58] text-white px-6 py-3 rounded-lg
-                flex items-center justify-center gap-2
-                transition-all hover:scale-105 hover:shadow-lg
-                text-lg font-medium
-              ">
+
+              {/* Android Persona */}
+              <a
+                href="https://play.google.com/store/apps/details?id=cl.tellevo.app.tellevo_pasajero"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Descargar Persona en Google Play"
+                class="bg-[#0F9D58] text-white px-5 py-3 rounded-lg flex items-center gap-3 transition-all hover:scale-105 hover:shadow-lg"
+              >
                 <GooglePlayBadge class="h-8 w-auto" />
-                Google Play
+                <span class="text-sm font-medium">Android Persona</span>
+              </a>
+
+              {/* iOS Auto */}
+              <a
+                href="https://apps.apple.com/cl/app/te-llevo-app-auto/id6743774731"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Descargar Auto en App Store"
+                class="bg-black text-white px-5 py-3 rounded-lg flex items-center gap-3 transition-all hover:scale-105 hover:shadow-lg"
+              >
+                <AppStoreBadge class="h-8 w-auto" />
+                <span class="text-sm font-medium">iOS Auto</span>
+              </a>
+
+              {/* Android Auto */}
+              <a
+                href="https://play.google.com/store/apps/details?id=cl.tellevo.app.tellevo_conductor"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Descargar Auto en Google Play"
+                class="bg-[#0F9D58] text-white px-5 py-3 rounded-lg flex items-center gap-3 transition-all hover:scale-105 hover:shadow-lg"
+              >
+                <GooglePlayBadge class="h-8 w-auto" />
+                <span class="text-sm font-medium">Android Auto</span>
               </a>
             </div>
 
