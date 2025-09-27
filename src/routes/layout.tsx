@@ -32,7 +32,7 @@ export default component$(() => {
   return (
     <>
       <Header />
-      <main>
+      <main class="font-sans">
         <Slot />
       </main>
       <Footer />

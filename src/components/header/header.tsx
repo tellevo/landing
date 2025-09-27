@@ -17,7 +17,7 @@ export default component$(() => {
   const activeView = useSignal<"personas" | "empresas">("personas");
 
   return (
-    <header class="bg-white shadow-sm sticky top-0 z-50 h-40">
+    <header class="font-sans bg-white shadow-sm sticky top-0 z-50 h-40">
       <div class="container mx-auto px-4 h-full">
         <div class="flex items-center justify-between">
           {/* Logo */}
