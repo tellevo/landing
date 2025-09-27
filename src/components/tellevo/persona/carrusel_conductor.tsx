@@ -13,8 +13,8 @@ import Screen5 from "~/assets/carrusel_conductor/screen5.png";
 
 export const ConductorSteps = component$(() => {
   return (
-    <section class="container mx-auto px-4 ">
-      <h2 class="text-4xl font-bold text-center">
+    <section class="container mx-auto px-4 py-10 md:py-14">
+      <h2 class="text-4xl font-bold text-center mb-6 md:mb-8">
           <span class="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
             Si eres Conductor
           </span>
@@ -39,7 +39,7 @@ export const ConductorSteps = component$(() => {
 
         {/* Columna central (2/3) - Carrusel */}
         <div class="lg:w-1/3 w-full">
-          <Carousel slideInterval={3000} class="min-h-screen" noControls noIndicators>
+          <Carousel slideInterval={3000} class="h-[380px] sm:h-[440px] md:h-[520px] lg:h-[600px]" noControls noIndicators>
             <Carousel.Slide class="flex items-center justify-center h-full">
               <img
                 src={Screen1}
