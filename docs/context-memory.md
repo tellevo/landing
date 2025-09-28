@@ -107,6 +107,43 @@ export default {
 - Componentes interactivos (`Carousel`, etc.) provienen de `flowbite-qwik`.
 - Asegurar que las clases de Tailwind usadas por Flowbite estén presentes en `content` de Tailwind para purga correcta (ver snippet recomendado).
 
+## SwitchPersonasEmpresas Componente
+
+Componente de interruptor profesional para alternar entre vistas "Personas" y "Empresas".
+
+**Ubicación**: `src/components/tellevo/widgets/switch-personas-empresas.tsx`
+
+**Características técnicas**:
+- **Estilos modulados**: Usa `switch-personas-empresas.module.css` para CSS profesional
+- **Cross-browser compatibility**: Animaciones con vendor prefixes para Chrome, Firefox, Safari
+- **Accesibilidad**: ARIA labels, keyboard navigation, screen reader support (WCAG 2.1 AA)
+- **Performance**: Hardware-accelerated animations con `will-change`, `transform3d`
+- **Responsive**: Optimizado para desktop y mobile con touch targets de 44px mínimo
+- **Micro-interactions**: Smooth transitions (300ms cubic-bezier), hover states, loading feedback
+
+**Estructura**:
+```tsx
+<SwitchPersonasEmpresas
+  isLoading={isLoading}
+  activeView={activeView}
+  isMenuOpen={isMenuOpen} // opcional
+/>
+```
+
+**Styling profesional incluye**:
+- Gradientes lineales para backgrounds
+- Sombras en capas para profundidad
+- Animaciones suaves del indicador deslizante
+- Estados de carga mejorados con spinners
+- Soporte para modo alto contraste
+- Prefers-reduced-motion para accesibilidad
+- Fallbacks para navegadores antiguos
+
+**Props**:
+- `isLoading: Signal<boolean>` - Para deshabilitar botones y mostrar spinners
+- `activeView: Signal<"personas" | "empresas">` - Estado activo del switch
+- `isMenuOpen?: Signal<boolean>` - Para cerrar menú móvil en cambio
+
 ## Convenciones de Qwik City
 - Cada ruta puede exportar `head: DocumentHead` para título y metadatos.
 - El `<Slot />` en `layout.tsx` renderiza la ruta hija.
