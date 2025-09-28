@@ -22,7 +22,7 @@ export default component$(() => {
         <div class="flex items-center justify-between">
           {/* Logo */}
           <a href="/personas" class="flex items-center">
-            <LogoImg class="h-16 w-auto" />
+            <LogoImg class="h-16 w-auto md:max-w-[240px] lg:max-w-[240px]" />
           </a>
 
           {/* Navegación principal */}
