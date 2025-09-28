@@ -10,7 +10,6 @@ export default component$(() => {
           <div class="flex items-center justify-center mb-2">
             <Logo class="h-20 w-auto" />
           </div>
-          <div class="text-sm opacity-90 mt-1">Soluciones de movilidad</div>
 
           {/* Navegación */}
           <nav class="mt-6">
