@@ -1,5 +1,6 @@
-import { component$, Signal } from "@builder.io/qwik";
+import { component$, Signal, $ } from "@builder.io/qwik";
 import { useNavigate } from "@builder.io/qwik-city";
+import styles from "./switch-personas-empresas.module.css";
 
 interface SwitchPersonasEmpresasProps {
   isLoading: Signal<boolean>;
@@ -10,32 +11,63 @@ interface SwitchPersonasEmpresasProps {
 export const SwitchPersonasEmpresas = component$<SwitchPersonasEmpresasProps>((props) => {
   const navigate = useNavigate();
 
+  // Handle keyboard navigation
+  const handleKeyDown = $((event: KeyboardEvent, targetView: "personas" | "empresas") => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (props.activeView.value !== targetView) {
+        navigateToView(targetView);
+      }
+    }
+  });
+
+  const navigateToView = $(async (targetView: "personas" | "empresas") => {
+    if (props.isLoading.value) return;
+
+    if (props.isMenuOpen) {
+      props.isMenuOpen.value = false;
+    }
+
+    props.isLoading.value = true;
+    try {
+      await navigate(targetView === "personas" ? "/personas" : "/");
+      props.activeView.value = targetView;
+    } finally {
+      props.isLoading.value = false;
+    }
+  });
+
   return (
-    <div class="hidden md:flex mx-4">
-      <div class="relative bg-gray-100 rounded-full p-1.5">
-        <div class="flex relative z-10 gap-1">
+    <div
+      class={styles.switchContainer}
+      role="tablist"
+      aria-label="Cambiar vista entre Personas y Empresas"
+    >
+      <div class={styles.switchWrapper}>
+        <div class={styles.switchButtons}>
+          {/* Personas Button */}
           <button
-            onClick$={async () => {
-              if (props.isMenuOpen) {
-                props.isMenuOpen.value = false;
-              }
-              props.isLoading.value = true;
-              await navigate("/personas");
-              props.activeView.value = "personas";
-              props.isLoading.value = false;
-            }}
+            onClick$={() => navigateToView("personas")}
+            onKeyDown$={(event) => handleKeyDown(event, "personas")}
             disabled={props.isLoading.value}
-            class={`mobile-menu-switch-button flex-1 px-4 py-2 rounded-full text-sm font-medium relative z-20 transition-colors ${
-              props.isLoading.value ? "opacity-70 cursor-not-allowed" : ""
+            aria-selected={props.activeView.value === "personas"}
+            role="tab"
+            aria-controls="personas-view"
+            id="personas-tab"
+            class={`${styles.buttonBase} ${
+              props.activeView.value === "personas"
+                ? styles.buttonActive
+                : styles.buttonInactive
             }`}
           >
             {props.isLoading.value && props.activeView.value === "empresas" ? (
-              <span class="inline-flex items-center">
+              <span class={styles.spinnerContainer} aria-hidden="true">
                 <svg
-                  class="animate-spin h-4 w-4 text-blue-600 "
+                  class={styles.spinner}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <circle
                     class="opacity-25"
@@ -51,33 +83,36 @@ export const SwitchPersonasEmpresas = component$<SwitchPersonasEmpresasProps>((p
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   />
                 </svg>
+                <span class="sr-only">Cargando...</span>
               </span>
             ) : (
               "Personas"
             )}
           </button>
 
+          {/* Empresas Button */}
           <button
-            onClick$={async () => {
-              props.isLoading.value = true;
-              await navigate("/");
-              props.activeView.value = "empresas";
-              props.isLoading.value = false;
-            }}
+            onClick$={() => navigateToView("empresas")}
+            onKeyDown$={(event) => handleKeyDown(event, "empresas")}
             disabled={props.isLoading.value}
-            class={`px-6 py-1 rounded-full text-sm font-medium relative z-20 transition-colors ${
+            aria-selected={props.activeView.value === "empresas"}
+            role="tab"
+            aria-controls="empresas-view"
+            id="empresas-tab"
+            class={`${styles.buttonBase} ${
               props.activeView.value === "empresas"
-                ? "text-blue-600 bg-transparent"
-                : "text-gray-500 bg-transparent"
-            } ${props.isLoading.value ? "opacity-70 cursor-not-allowed" : ""}`}
+                ? styles.buttonActive
+                : styles.buttonInactive
+            }`}
           >
             {props.isLoading.value && props.activeView.value === "personas" ? (
-              <span class="inline-flex items-center">
+              <span class={styles.spinnerContainer} aria-hidden="true">
                 <svg
-                  class="animate-spin h-4 w-4 text-blue-600"
+                  class={styles.spinner}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <circle
                     class="opacity-25"
@@ -93,6 +128,7 @@ export const SwitchPersonasEmpresas = component$<SwitchPersonasEmpresasProps>((p
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   />
                 </svg>
+                <span class="sr-only">Cargando...</span>
               </span>
             ) : (
               "Empresas"
@@ -100,13 +136,16 @@ export const SwitchPersonasEmpresas = component$<SwitchPersonasEmpresasProps>((p
           </button>
         </div>
 
-        {/* Indicador deslizante - Versión corregida */}
+        {/* Sliding indicator with professional styling */}
         <div
-          class={`absolute top-1/2 -translate-y-1/2 h-8 bg-white shadow rounded-full transition-all duration-300 ${
-            props.activeView.value === "personas"
-              ? "left-3 w-24"  // 96px
-              : "left-[7.5rem] w-24"  // 112px
+          class={`${styles.slidingIndicator} ${
+            props.activeView.value === "personas" ? styles.active : ""
           }`}
+          style={{
+            left: props.activeView.value === "personas" ? "4px" : "calc(50% + 4px)",
+            width: "calc(50% - 6px)"
+          }}
+          aria-hidden="true"
         />
       </div>
     </div>

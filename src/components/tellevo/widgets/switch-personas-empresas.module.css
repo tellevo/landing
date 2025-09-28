@@ -1,0 +1,286 @@
+/* Switch Personas/Empresas - Professional Styling */
+
+/* CSS Custom Properties for theming */
+.switchContainer {
+  --switch-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --switch-bg-hover: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+  --switch-bg-active: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+
+  --indicator-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --indicator-shadow-active: 0 6px 20px rgba(51, 102, 255, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  --button-text-active: #1e40af;
+  --button-text-inactive: #64748b;
+  --button-text-disabled: #94a3b8;
+
+  --transition-duration: 300ms;
+  --transition-easing: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+  /* Cross-browser prefixes for animations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.switchWrapper {
+  position: relative;
+  background: var(--switch-bg);
+  border-radius: 50px;
+  padding: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all var(--transition-duration) var(--transition-easing);
+
+  /* Hardware acceleration for smooth animations */
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.switchWrapper:hover {
+  background: var(--switch-bg-hover);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.switchButtons {
+  display: flex;
+  position: relative;
+  z-index: 10;
+  gap: 4px;
+}
+
+.buttonBase {
+  position: relative;
+  z-index: 20;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-align: center;
+  user-select: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  /* Improved focus states for accessibility */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  /* Touch target size for mobile */
+  min-height: 44px;
+  min-width: 80px;
+
+  /* Cross-browser compatibility */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Transitions with cross-browser prefixes */
+  transition: all var(--transition-duration) var(--transition-easing);
+  -webkit-transition: all var(--transition-duration) var(--transition-easing);
+  -moz-transition: all var(--transition-duration) var(--transition-easing);
+}
+
+.buttonBase:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.buttonBase:hover:not(:disabled) {
+  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+}
+
+.buttonBase:active:not(:disabled) {
+  transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+  -moz-transform: scale(0.98);
+}
+
+.buttonBase:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  -webkit-transform: none;
+  -moz-transform: none;
+}
+
+.buttonInactive {
+  color: var(--button-text-inactive);
+}
+
+.buttonActive {
+  color: var(--button-text-active);
+  font-weight: 700;
+}
+
+.buttonDisabled {
+  color: var(--button-text-disabled);
+  opacity: 0.6;
+}
+
+/* Sliding indicator with professional styling */
+.slidingIndicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+
+  height: 36px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  /* Professional shadow */
+  box-shadow: var(--indicator-shadow);
+
+  /* Smooth transition with cross-browser support */
+  transition: all var(--transition-duration) var(--transition-easing);
+  -webkit-transition: all var(--transition-duration) var(--transition-easing);
+  -moz-transition: all var(--transition-duration) var(--transition-easing);
+
+  /* Hardware acceleration */
+  will-change: transform, box-shadow;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.slidingIndicator.active {
+  box-shadow: var(--indicator-shadow-active);
+  transform: translateY(-50%) scale(1.02);
+  -webkit-transform: translateY(-50%) scale(1.02);
+  -moz-transform: translateY(-50%) scale(1.02);
+}
+
+/* Enhanced spinner styling */
+.spinnerContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  height: 16px;
+  width: 16px;
+  color: #3b82f6;
+
+  /* Smooth animation */
+  animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+
+/* Cross-browser animation fallbacks */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+/* Loading state for better UX */
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .switchWrapper {
+    border: 2px solid;
+    border-color: var(--button-text-inactive);
+  }
+
+  .slidingIndicator {
+    border: 2px solid currentColor;
+    background: currentColor;
+    color: white;
+  }
+
+  .buttonActive {
+    color: currentColor;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .switchWrapper,
+  .buttonBase,
+  .slidingIndicator,
+  .spinner {
+    transition: none;
+    animation: none;
+    -webkit-transition: none;
+    -webkit-animation: none;
+    -moz-transition: none;
+    -moz-animation: none;
+  }
+
+  .switchWrapper:hover {
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+  }
+
+  .buttonBase:hover:not(:disabled) {
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .switchWrapper {
+    padding: 3px;
+  }
+
+  .buttonBase {
+    min-height: 48px;
+    min-width: 85px;
+    font-size: 13px;
+    padding: 10px 18px;
+  }
+
+  .slidingIndicator {
+    height: 40px;
+  }
+}
