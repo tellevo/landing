@@ -1,7 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import JuanJofre from '~/assets/nosotros/Juan.jpg?jsx';
 import DanielMartinez from '~/assets/nosotros/Daniel.jpg?jsx';
-import RoxanaUreta from '~/assets/nosotros/Roxana.jpg?jsx';
 import GonzaloOviedo from '~/assets/nosotros/Gonzalo.jpg?jsx';
 import TamaraMoreno from '~/assets/nosotros/Tamara.jpg?jsx';
 import KamilaNarea from '~/assets/nosotros/Kamila.jpg?jsx';
@@ -9,41 +8,40 @@ import KamilaNarea from '~/assets/nosotros/Kamila.jpg?jsx';
 export default component$(() => {
     const nosotrosMembers = [
         {
-            name: "Juan Jofré",
-            position: "CCO - Cofounder",
-            email: "juan.jofre@tellevoapp.cl",
-            image: JuanJofre
+            index: 1,
+            name: "Kamila Narea",
+            position: "CMO",
+            email: "kamila.narea@tellevoapp.cl",
+            image: KamilaNarea
         },
         {
-            name: "Daniel Martínez",
-            position: "CEO - Cofounder",
-            email: "daniel.martinez@tellevoapp.cl",
-            image: DanielMartinez
-        },
-        {
-            name: "Roxana Ureta",
-            position: "COO - Cofounder",
-            email: "roxana.ureta@tellevoapp.cl",
-            image: RoxanaUreta
-        },
-        {
-            name: "Gonzalo Oviedo",
-            position: "CTO",
-            email: "gonzalo.oviedo@tellevoapp.cl",
-            image: GonzaloOviedo
-        },
-        {
+            index: 2,
             name: "Tamara Moreno",
             position: "CLO",
             email: "tamara.moreno@tellevoapp.cl",
             image: TamaraMoreno
         },
         {
-            name: "Kamila Narea",
-            position: "CMO",
-            email: "kamila.narea@tellevoapp.cl",
-            image: KamilaNarea
-        }
+            index: 3,
+            name: "Juan Jofré",
+            position: "CCO - Cofounder",
+            email: "juan.jofre@tellevoapp.cl",
+            image: JuanJofre
+        },
+        {
+            index: 4,
+            name: "Daniel Martínez",
+            position: "CEO - Cofounder",
+            email: "daniel.martinez@tellevoapp.cl",
+            image: DanielMartinez
+        },        
+        {
+            index: 5,
+            name: "Gonzalo Oviedo",
+            position: "CTO",
+            email: "gonzalo.oviedo@tellevoapp.cl",
+            image: GonzaloOviedo
+        },
     ];
 
     return (

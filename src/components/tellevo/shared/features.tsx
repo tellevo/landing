@@ -29,7 +29,7 @@ const IconBulb = component$(() => {
 export default component$((props: ContenidoProps) => {
   const navigate = useNavigate();
   return (
-    <section class="relative py-20 bg-white">
+    <section class="relative bg-white">
       {/* Efecto de conexiones tecnológicas sutiles */}
       <div class="absolute inset-0 overflow-hidden opacity-10">
         <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yMCAzOC41YzEwLjIxIDAgMTguNS04LjI5IDE4LjUtMTguNUMzOC41IDkuNzkgMzAuMjEgMS41IDIwIDEuNSA5Ljc5IDEuNSAxLjUgOS43OSAxLjUgMjAgMS41IDMwLjIxIDkuNzkgMzguNSAyMCAzOC41eiIgc3Ryb2tlPSIjMDA3Y2NiIiBzdHJva2Utd2lkdGg9IjEiLz48L2c+PC9zdmc+')]">
