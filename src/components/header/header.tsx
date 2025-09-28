@@ -2,6 +2,7 @@ import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
 import LogoImg from "~/assets/logo.png?jsx";
 import { smoothScroll } from "./scroll";
 import { useNavigate } from "@builder.io/qwik-city";
+import { SwitchPersonasEmpresas } from "~/components/tellevo/widgets/switch-personas-empresas";
 
 export default component$(() => {
   const navItems = [
@@ -62,80 +63,11 @@ export default component$(() => {
             ))}
           </nav>
 
-          {/* Switch deslizante Personas/Empresas CORREGIDO */}
-          <div class="hidden md:flex mx-4">
-            <div class="relative bg-gray-100 rounded-full p-1.5">
-              <div class="flex relative z-10 gap-1">
-                    <button
-                      onClick$={async () => {
-                        isMenuOpen.value = false;
-                        isLoading.value = true;
-                        await navigate("/personas");
-                        activeView.value = "personas";
-                        isLoading.value = false;
-                      }}
-                      disabled={isLoading.value}
-                      class={`mobile-menu-switch-button flex-1 px-4 py-2 rounded-full text-sm font-medium relative z-20 transition-colors ${
-                        isLoading.value ? "opacity-70 cursor-not-allowed" : ""
-                      }`}
-                    >
-                  {isLoading.value && activeView.value === "empresas" ? (
-                    <span class="inline-flex items-center">
-                      <svg
-                        class="animate-spin h-4 w-4 text-blue-600 "
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        {/* Icono de spinner */}
-                      </svg>
-                    </span>
-                  ) : (
-                    "Personas"
-                  )}
-                </button>
-                
-                <button
-                  onClick$={async () => {
-                    isLoading.value = true;
-                    await navigate("/");
-                    activeView.value = "empresas";
-                    isLoading.value = false;
-                  }}
-                  disabled={isLoading.value}
-                  class={`px-6 py-1 rounded-full text-sm font-medium relative z-20 transition-colors ${
-                    activeView.value === "empresas"
-                      ? "text-blue-600 bg-transparent"
-                      : "text-gray-500 bg-transparent"
-                  } ${isLoading.value ? "opacity-70 cursor-not-allowed" : ""}`}
-                >
-                  {isLoading.value && activeView.value === "personas" ? (
-                    <span class="inline-flex items-center">
-                      <svg
-                        class="animate-spin h-4 w-4 text-blue-600"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        {/* Icono de spinner */}
-                      </svg>
-                    </span>
-                  ) : (
-                    "Empresas"
-                  )}
-                </button>
-              </div>
-              
-              {/* Indicador deslizante - Versión corregida */}
-              <div
-                class={`absolute top-1/2 -translate-y-1/2 h-8 bg-white shadow rounded-full transition-all duration-300 ${
-                  activeView.value === "personas"
-                    ? "left-3 w-24"  // 96px
-                    : "left-[7.5rem] w-24"  // 112px
-                }`}
-              />
-            </div>
-          </div>
+          <SwitchPersonasEmpresas
+            isLoading={isLoading}
+            activeView={activeView}
+            isMenuOpen={isMenuOpen}
+          />
 
           {/* Hamburger Menu Button - Móvil */}
           <button

@@ -20,10 +20,10 @@ export const BotonNavegacion = component$(() => {
       onClick$={handleClick} // <-- Usamos onClick$ con $
       disabled={isLoading.value}
       class={`
-        px-6 py-2 rounded-lg font-medium transition-all duration-300
+        
         ${isPersonas.value 
-          ? ' text-white ' 
-          : ' text-white '} // Cambiado a fondo oscuro para mejor contraste
+          ? 'text-white' 
+          : 'text-black'} // Cambiado a fondo oscuro para mejor contraste
         ${isLoading.value ? 'opacity-70 cursor-not-allowed' : ''}
       `}
     >
