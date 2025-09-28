@@ -17,7 +17,7 @@ body {
 h1,
 h2,
 h3 {
-  color: #2D6CFF;
+  color: #1054F1;
   margin: 0;
 }
 
@@ -112,7 +112,6 @@ a.button,
 button {
   border: 1px solid #2563eb;
   border-radius: 8px;
-  color: white;
   cursor: pointer;
   font-size: 0.8rem;
   padding: 15px 20px;

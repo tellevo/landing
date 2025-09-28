@@ -14,7 +14,7 @@ export const PasajeroSteps = component$(() => {
   return (
     <section class="container mx-auto px-4 py-10 md:py-14">
       <h2 class="text-4xl font-bold text-center mb-6 md:mb-8">
-        <span class="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+        <span>
           Si eres Pasajero
         </span>
       </h2>

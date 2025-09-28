@@ -11,7 +11,7 @@ export default component$(() => {
       
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold text-gray-800 mb-4">
-          <span class="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
+          <span class="bg-clip-text text-[#1054F1]">
             ¿Por qué Tellevo App es tu mejor opción?
           </span>
         </h2>
