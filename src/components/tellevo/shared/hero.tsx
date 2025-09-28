@@ -1,6 +1,5 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, Slot } from "@builder.io/qwik";
 import { smoothScroll } from "~/components/header/scroll";
-import { YouTubeVideo } from "~/components/youtube/tellevo";
 
 // Define las props que el componente aceptará
 interface ContenidoProps {
@@ -24,10 +23,7 @@ export default component$((props: ContenidoProps) => {
           </div>
           <div class="md:w-1/2 relative w-full">
             <div class="absolute inset-0 bg-blue-500/10 rounded-2xl backdrop-blur-xl"></div>
-            <YouTubeVideo
-              videoId="i9sYJT33eyA"
-              class="rounded-2xl transform perspective-1000 rotate-x-5"
-            />
+            <Slot />
           </div>
         </div>
       </div>

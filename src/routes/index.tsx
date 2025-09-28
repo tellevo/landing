@@ -26,7 +26,7 @@ export default component$(() => {
               asequible para tus
               colaboradores"
       >
-        <YouTubeVideo videoId="i9sYJT33eyA" />
+        <YouTubeVideo videoId="GG7icfH8faY" />
       </Hero>
 
       {/* Features */}

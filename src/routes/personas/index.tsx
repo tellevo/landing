@@ -3,7 +3,7 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import Hero from "~/components/tellevo/shared/hero";
 import Features from "~/components/tellevo/shared/features";
 import TeLlevoRecorridoImg from "~/assets/personas/tellevo-recorrido.png?jsx";
-
+import { YouTubeVideo } from "~/components/youtube/tellevo";
 import Beneficios from "~/components/tellevo/shared/beneficios";
 import { TextoBoton } from "~/components/tellevo/persona/secciones/texto-boton";
 import AutomovilImg from "~/assets/personas/automovil.jpg?jsx";
@@ -18,7 +18,11 @@ export default component$(() => {
   return (
     <>
       {/* Hero Section */}
-      <Hero texto="Somos la aplicación enfocada en que llegues al trabajo o casa seguro a un precio asequible"></Hero>
+      <Hero
+        texto="Somos la aplicación enfocada en que llegues al trabajo o casa seguro a un precio asequible"
+      >
+        <YouTubeVideo videoId="i9sYJT33eyA" />
+      </Hero>
 
       {/* Features Section */}
       <Features
