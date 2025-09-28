@@ -110,14 +110,31 @@ ul {
 /* BUTTONS -------------------------------------- */
 a.button,
 button {
-  background: var(--qwik-light-blue);
-  border: none;
+  border: 1px solid #2563eb;
   border-radius: 8px;
   color: white;
   cursor: pointer;
   font-size: 0.8rem;
   padding: 15px 20px;
   text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+a.button:hover,
+button:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* Special mobile menu buttons */
+.mobile-menu-switch-button {
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid #2563eb !important;
+}
+
+.mobile-menu-switch-button:hover {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+  color: white !important;
 }
 
 a.button.button-dark,

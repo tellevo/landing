@@ -66,20 +66,19 @@ export default component$(() => {
           <div class="hidden md:flex mx-4">
             <div class="relative bg-gray-100 rounded-full p-1.5">
               <div class="flex relative z-10 gap-1">
-                <button
-                  onClick$={async () => {
-                    isLoading.value = true;
-                    await navigate("/personas");
-                    activeView.value = "personas";
-                    isLoading.value = false;
-                  }}
-                  disabled={isLoading.value}
-                  class={`px-6 py-1 rounded-full text-sm font-medium relative z-20 transition-colors ${
-                    activeView.value === "personas"
-                      ? "text-blue-600 bg-transparent"
-                      : "text-gray-500 bg-transparent"
-                  } ${isLoading.value ? "opacity-70 cursor-not-allowed" : ""}`}
-                >
+                    <button
+                      onClick$={async () => {
+                        isMenuOpen.value = false;
+                        isLoading.value = true;
+                        await navigate("/personas");
+                        activeView.value = "personas";
+                        isLoading.value = false;
+                      }}
+                      disabled={isLoading.value}
+                      class={`mobile-menu-switch-button flex-1 px-4 py-2 rounded-full text-sm font-medium relative z-20 transition-colors ${
+                        isLoading.value ? "opacity-70 cursor-not-allowed" : ""
+                      }`}
+                    >
                   {isLoading.value && activeView.value === "empresas" ? (
                     <span class="inline-flex items-center">
                       <svg
@@ -226,7 +225,7 @@ export default component$(() => {
 
               {/* Switch Personas/Empresas en móvil */}
               <div class="mb-8">
-                <div class="relative bg-gray-100 rounded-full p-1.5 mx-auto max-w-xs">
+                <div class="relative bg-white rounded-full p-1.5 mx-auto max-w-xs">
                   <div class="flex relative z-10 gap-1">
                     <button
                       onClick$={async () => {
@@ -237,11 +236,9 @@ export default component$(() => {
                         isLoading.value = false;
                       }}
                       disabled={isLoading.value}
-                      class={`flex-1 px-4 py-2 rounded-full text-sm font-medium relative z-20 transition-colors ${
-                        activeView.value === "personas"
-                          ? "text-blue-600 bg-transparent"
-                          : "text-gray-500 bg-transparent"
-                      } ${isLoading.value ? "opacity-70 cursor-not-allowed" : ""}`}
+                      class={`mobile-menu-switch-button flex-1 px-4 py-2 rounded-full text-sm font-medium relative z-20 transition-colors ${
+                        isLoading.value ? "opacity-70 cursor-not-allowed" : ""
+                      }`}
                     >
                       {isLoading.value && activeView.value === "empresas" ? (
                         <span class="inline-flex items-center">
@@ -272,11 +269,9 @@ export default component$(() => {
                         isLoading.value = false;
                       }}
                       disabled={isLoading.value}
-                      class={`flex-1 px-4 py-2 rounded-full text-sm font-medium relative z-20 transition-colors ${
-                        activeView.value === "empresas"
-                          ? "text-blue-600 bg-transparent"
-                          : "text-gray-500 bg-transparent"
-                      } ${isLoading.value ? "opacity-70 cursor-not-allowed" : ""}`}
+                      class={`mobile-menu-switch-button flex-1 px-4 py-2 rounded-full text-sm font-medium relative z-20 transition-colors ${
+                        isLoading.value ? "opacity-70 cursor-not-allowed" : ""
+                      }`}
                     >
                       {isLoading.value && activeView.value === "personas" ? (
                         <span class="inline-flex items-center">
@@ -299,14 +294,7 @@ export default component$(() => {
                     </button>
                   </div>
 
-                  {/* Indicador deslizante */}
-                  <div
-                    class={`absolute top-1/2 -translate-y-1/2 h-8 bg-white shadow rounded-full transition-all duration-300 ${
-                      activeView.value === "personas"
-                        ? "left-1.5 w-16"
-                        : "left-[4.5rem] w-16"
-                    }`}
-                  />
+
                 </div>
               </div>
 
