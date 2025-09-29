@@ -31,10 +31,10 @@ export default component$(() => {
           {/* Redes sociales */}
           <div class="mt-6 flex items-center gap-6">
             <a href="https://www.facebook.com/tellevoapp.cl" target="_blank" rel="noopener" aria-label="Facebook" class="hover:opacity-90">
-              <i class="fab fa-facebook text-2xl"></i>
+              <i class="fab fa-facebook text-white text-2xl"></i>
             </a>
             <a href="https://www.instagram.com/tellevoapp.cl/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:opacity-90">
-              <i class="fab fa-instagram text-2xl"></i>
+              <i class="fab fa-instagram text-white text-2xl"></i>
             </a>
           </div>
         </div>
