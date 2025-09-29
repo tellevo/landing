@@ -38,7 +38,7 @@ export default component$(() => {
         {
             index: 5,
             name: "Gonzalo Oviedo",
-            position: "CTO",
+            position: "CTO - Cofounder",
             email: "gonzalo.oviedo@tellevoapp.cl",
             image: GonzaloOviedo
         },
