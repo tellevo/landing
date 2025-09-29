@@ -6,9 +6,11 @@
 - Recomendado crear `.env` (no commitear) y `.env.example` con claves públicas necesarias.
 - Variables actuales usadas por el código:
   - `PUBLIC_GOOGLE_MAPS_API_KEY`: requerida por `src/utils/google-map-loader.ts`.
+  - `VITE_API_BASE_URL`: URL base para el servicio de contacto en `src/services/contacto.service.ts`.
 - Ejemplo `.env.example`:
   ```env
   PUBLIC_GOOGLE_MAPS_API_KEY=
+  VITE_API_BASE_URL=http://localhost:7083/tellevoapp/contacto
   ```
 - Nota: Prefijo `PUBLIC_` expone la variable al cliente. No almacenar secretos sin `PUBLIC_` en el cliente.
 
