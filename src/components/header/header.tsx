@@ -94,10 +94,10 @@ export default component$(() => {
           <div class="hidden md:flex items-center space-x-4">
             <div class="flex space-x-3">
               <a href="https://www.facebook.com/tellevoapp.cl" target="_blank" rel="noopener" aria-label="Facebook" class="hover:opacity-90">
-                <i class="fab fa-facebook text-blue-600 hover:text-blue-800 cursor-pointer text-lg" />
+                <i class="fab fa-facebook text-blue-600 hover:text-blue-800 cursor-pointer text-5xl" />
               </a>
               <a href="https://www.instagram.com/tellevoapp.cl/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:opacity-90">
-                <i class="fab fa-instagram text-red-500 hover:text-blue-600 cursor-pointer text-lg" />
+                <i class="fab fa-instagram text-red-500 hover:text-blue-600 cursor-pointer text-5xl" />
               </a>
             </div>
           </div>
@@ -237,10 +237,10 @@ export default component$(() => {
               {/* Iconos sociales */}
               <div class="flex justify-center space-x-6">
                 <a href="https://www.facebook.com/tellevoapp.cl" target="_blank" rel="noopener" aria-label="Facebook" class="hover:opacity-90">
-                  <i class="fab fa-facebook text-blue-600 hover:text-blue-800 cursor-pointer text-xl" />
+                  <i class="fab fa-facebook text-blue-600 hover:text-blue-800 cursor-pointer text-6xl" />
                 </a>
                 <a href="https://www.instagram.com/tellevoapp.cl/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:opacity-90">
-                  <i class="fab fa-instagram text-red-500 hover:text-blue-600 cursor-pointer text-xl" />
+                  <i class="fab fa-instagram text-red-500 hover:text-blue-600 cursor-pointer text-6xl" />
                 </a>
               </div>
             </div>
