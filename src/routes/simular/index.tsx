@@ -148,11 +148,12 @@ export default component$(() => {
                     </div>
                     <div class="border-t pt-4">
                       <h4 class="text-lg font-semibold text-[#1054F1] mb-3">Tarifa Estimada</h4>
-                      {[1].map((passengers) => {
+                      {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+                      {(() => {
                         const km = routeInfo.value!.distanceValue / 1000;
                         const tripValue = calculateDriverRate(km);
                         return (
-                          <div key={passengers} class="mb-3">
+                          <div class="mb-3">
                             <p class="text-2xl text-cyan-600 font-bold">
                               ${formatNumber(Math.round(tripValue))}
                             </p>
@@ -161,7 +162,7 @@ export default component$(() => {
                             </p>
                           </div>
                         );
-                      })}
+                      })()}
                     </div>
                   </div>
                 )}

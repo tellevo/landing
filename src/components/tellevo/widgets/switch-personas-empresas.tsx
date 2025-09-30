@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { component$, Signal, $ } from "@builder.io/qwik";
 import { useNavigate } from "@builder.io/qwik-city";
 import styles from "./switch-personas-empresas.module.css";

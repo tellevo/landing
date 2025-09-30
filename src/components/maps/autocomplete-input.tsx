@@ -14,7 +14,8 @@ export default component$<AutocompleteInputProps>(({ id, label, placeholder, onP
   const inputRef = useSignal<HTMLInputElement>();
   const mapLoaded = useSignal(false);
   const error = useSignal<string | null>(null);
-  const minChars = typeof minCharsProp === 'number' ? minCharsProp : 3;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const minChars = minCharsProp ?? 3;
   const initialized = useSignal(false);
   const autocomplete = useSignal<NoSerialize<google.maps.places.Autocomplete> | null>(null);
 
@@ -22,13 +23,14 @@ export default component$<AutocompleteInputProps>(({ id, label, placeholder, onP
     const ac = autocomplete.value;
     if (!ac) return;
     const place = ac.getPlace();
-    if (onPlaceSelected$ && place) {
+    if (onPlaceSelected$) {
       const fallbackAddress = place.formatted_address || place.name || inputRef.value?.value || '';
       const selected = { ...place, formatted_address: place.formatted_address ?? fallbackAddress } as google.maps.places.PlaceResult;
       await onPlaceSelected$(selected);
     }
   });
 
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(async ({ cleanup }) => {
     const loader = getGoogleMapsLoader();
     try {
@@ -43,7 +45,8 @@ export default component$<AutocompleteInputProps>(({ id, label, placeholder, onP
     }
 
     const tryInit = () => {
-      const val = inputRef.value?.value ?? '';
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      const val = inputRef.value!.value ?? '';
       if (!initialized.value && val.length >= minChars && inputRef.value) {
         if (!(globalThis as any).google?.maps?.places) {
           console.warn('[AutocompleteInput] google.maps.places is not available yet');

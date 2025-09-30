@@ -10,6 +10,7 @@ export const Carousel = component$<CarouselProps>(({ images, interval = 2000 }) 
   const currentIndex = useSignal(0);
 
   // Configurar el movimiento automático si hay más de 3 imágenes
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
     if (images.length > 3) {
       const timer = setInterval(() => {
@@ -34,10 +35,12 @@ export const Carousel = component$<CarouselProps>(({ images, interval = 2000 }) 
           <img
             key={index}
             src={src}
+            width={300}
+            height={200}
             style={{
-              
+
               objectFit: 'cover',
-              
+
             }}
             alt={`Imagen ${index + 1}`}
           />

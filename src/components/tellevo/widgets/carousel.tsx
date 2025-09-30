@@ -37,10 +37,12 @@ export const Carrito =  component$(() => {
           <Carousel.Slide key={imagenes.indexOf(imagen)} class="carousel-slide">
             <img
             src={imagen}
+            width={200}
+            height={100}
             style={{
-              
+
               objectFit: 'cover',
-              
+
             }}
           />
           </Carousel.Slide>

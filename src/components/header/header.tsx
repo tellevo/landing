@@ -19,6 +19,7 @@ export default component$(() => {
   const isMenuOpen = useSignal(false);
 
   // Manejar scroll del body cuando el menú está abierto
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ track }) => {
     track(() => isMenuOpen.value);
     if (typeof document !== 'undefined') {

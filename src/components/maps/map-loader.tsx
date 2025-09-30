@@ -14,6 +14,7 @@ export default component$<MapProps>(({ start, end, onRouteCalculated$ }) => {
   const mapLoaded = useSignal(false);
   const mapError = useSignal<string | null>(null);
 
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(async ({ cleanup }) => {
     if (mapLoaded.value) return;
 
