@@ -112,7 +112,7 @@ export default component$(() => {
             <div class="p-6">
               {/* Close Button */}
               <button
-                class="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 transition-colors"
+                class="absolute top-4 right-4 p-1 text-gray-500 hover:text-gray-700 transition-colors"
                 onClick$={() => (isMenuOpen.value = false)}
                 aria-label="Cerrar menú"
               >
@@ -121,47 +121,8 @@ export default component$(() => {
                 </svg>
               </button>
 
-              {/* Logo */}
+              {/* Switch Personas/Empresas en móvil - Mobile First */}
               <div class="mb-8 mt-8">
-                <a href="/personas" onClick$={() => (isMenuOpen.value = false)}>
-                  <LogoImg class="h-12 w-auto mx-auto" />
-                </a>
-              </div>
-
-              {/* Navegación móvil */}
-              <nav class="mb-8">
-                <ul class="space-y-4">
-                  {navItems.map((item) => (
-                    <li key={item.id}>
-                      <button
-                        class="w-full text-left py-3 px-4 text-lg font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
-                        onClick$={async () => {
-                          isMenuOpen.value = false;
-                          if (item.id === "pasajero" || item.id === "conductor") {
-                            await navigate("/personas");
-                            activeView.value = "personas";
-                            smoothScroll(item.id);
-                          }
-                          if(item.id === "registro"){
-                            navigate("/registro");
-                          }
-                          if(item.id === "nosotros"){
-                            navigate("/nosotros");
-                          }
-                          if(item.id === "simular"){
-                            navigate("/simular");
-                          }
-                        }}
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-
-              {/* Switch Personas/Empresas en móvil */}
-              <div class="mb-8">
                 <div class="relative bg-white rounded-full p-1.5 mx-auto max-w-xs">
                   <div class="flex relative z-10 gap-1">
                     <button
@@ -230,10 +191,49 @@ export default component$(() => {
                       )}
                     </button>
                   </div>
-
-
                 </div>
               </div>
+
+              {/* Logo */}
+              <div class="mb-8">
+                <a href="/personas" onClick$={() => (isMenuOpen.value = false)}>
+                  <LogoImg class="h-12 w-auto mx-auto" />
+                </a>
+              </div>
+
+              {/* Navegación móvil */}
+              <nav class="mb-8">
+                <ul class="space-y-4">
+                  {navItems.map((item) => (
+                    <li key={item.id}>
+                      <button
+                        class="w-full text-left py-3 px-4 text-lg font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
+                        onClick$={async () => {
+                          isMenuOpen.value = false;
+                          if (item.id === "pasajero" || item.id === "conductor") {
+                            await navigate("/personas");
+                            activeView.value = "personas";
+                            smoothScroll(item.id);
+                          }
+                          if(item.id === "registro"){
+                            navigate("/registro");
+                          }
+                          if(item.id === "nosotros"){
+                            navigate("/nosotros");
+                          }
+                          if(item.id === "simular"){
+                            navigate("/simular");
+                          }
+                        }}
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+
 
               {/* Iconos sociales */}
               <div class="flex justify-center space-x-6">
