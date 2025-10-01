@@ -1,7 +1,7 @@
 import { component$, useSignal, useVisibleTask$, $ } from "@builder.io/qwik";
 import LogoImg from "~/assets/logo.png?jsx";
 import { smoothScroll } from "./scroll";
-import { useNavigate } from "@builder.io/qwik-city";
+import { useNavigate, useLocation } from "@builder.io/qwik-city";
 import { SwitchPersonasEmpresas } from "~/components/tellevo/widgets/switch-personas-empresas";
 import { MobileMenuOverlay } from "./mobile-menu-overlay";
 
@@ -14,17 +14,20 @@ export default component$(() => {
     { id: "simular", label: "Simular" },
   ];
 
+  const location = useLocation();
   const navigate = useNavigate();
   const isLoading = useSignal(false);
-  const activeView = useSignal<"personas" | "empresas">("personas");
+  const activeView = useSignal<"personas" | "empresas">(
+    location.url.pathname === "/" ? "empresas" : "personas",
+  );
   const isMenuOpen = useSignal(false);
 
   // Manejar scroll del body cuando el menú está abierto
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ track }) => {
     track(() => isMenuOpen.value);
-    if (typeof document !== 'undefined') {
-      document.body.style.overflow = isMenuOpen.value ? 'hidden' : 'auto';
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = isMenuOpen.value ? "hidden" : "auto";
     }
   });
 
@@ -66,13 +69,13 @@ export default component$(() => {
                     activeView.value = "personas";
                     smoothScroll(item.id);
                   }
-                  if(item.id === "registro"){
+                  if (item.id === "registro") {
                     navigate("/registro");
                   }
-                  if(item.id === "nosotros"){
+                  if (item.id === "nosotros") {
                     navigate("/nosotros");
                   }
-                  if(item.id === "simular"){
+                  if (item.id === "simular") {
                     navigate("/simular");
                   }
                 }}
@@ -85,18 +88,29 @@ export default component$(() => {
 
           {/* Switch + Social + Hamburger on same row */}
           <div class="flex items-center justify-center space-x-4">
-             
-             <SwitchPersonasEmpresas
+            <SwitchPersonasEmpresas
               isLoading={isLoading}
               activeView={activeView}
               isMenuOpen={isMenuOpen}
             />
             {/* Botones sociales no en modo mobile */}
             <div class="hidden md:flex items-center space-x-3">
-              <a href="https://www.facebook.com/tellevoapp.cl" target="_blank" rel="noopener" aria-label="Facebook" class="hover:opacity-90">
+              <a
+                href="https://www.facebook.com/tellevoapp.cl"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+                class="hover:opacity-90"
+              >
                 <i class="fab fa-facebook text-blue-600 hover:text-blue-800 cursor-pointer text-5xl" />
               </a>
-              <a href="https://www.instagram.com/tellevoapp.cl/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:opacity-90">
+              <a
+                href="https://www.instagram.com/tellevoapp.cl/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                class="hover:opacity-90"
+              >
                 <i class="fab fa-instagram text-red-500 hover:text-blue-600 cursor-pointer text-5xl" />
               </a>
             </div>

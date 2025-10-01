@@ -96,6 +96,9 @@ export default component$<MapProps>(({ start, end, onRouteCalculated$ }) => {
     }
   });
 
+  // directionPanelRef is optional, only set if provided
+  // <div ref={directionsPanelRef} class="w-full p-4 bg-white rounded-xl shadow-md"></div>
+  // to show directions panel only if needed. Dejarla bajo mapRef para que siempre esté disponible.
   return (
     <div class="w-full">
       {mapError.value ? (
@@ -105,7 +108,6 @@ export default component$<MapProps>(({ start, end, onRouteCalculated$ }) => {
       ) : (
         <>
           <div ref={mapRef} class="w-full h-[400px] sm:h-[500px] rounded-xl mb-4 shadow-md"></div>
-          <div ref={directionsPanelRef} class="w-full p-4 bg-white rounded-xl shadow-md"></div>
         </>
       )}
       <style>
