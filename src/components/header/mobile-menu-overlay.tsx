@@ -1,11 +1,11 @@
-import { component$ } from "@builder.io/qwik";
-import { Signal } from "@builder.io/qwik";
+import { component$, type QRL } from "@builder.io/qwik";
+import type { Signal } from "@builder.io/qwik";
 import LogoImg from "~/assets/logo.png?jsx";
 import { SwitchPersonasEmpresas } from "~/components/tellevo/widgets/switch-personas-empresas";
 
 interface MobileMenuOverlayProps {
   navItems: Array<{ id: string; label: string }>;
-  onNavigate: (target: string, itemId?: string) => void;
+  onNavigate: QRL<(target: string, itemId?: string) => void>;
   isLoading: Signal<boolean>;
   activeView: Signal<"personas" | "empresas">;
   isMenuOpen: Signal<boolean>;
