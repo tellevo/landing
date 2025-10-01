@@ -7,6 +7,7 @@ interface SwitchPersonasEmpresasProps {
   isLoading: Signal<boolean>;
   activeView: Signal<"personas" | "empresas">;
   isMenuOpen?: Signal<boolean>;
+  variant?: "mobile";
 }
 
 export const SwitchPersonasEmpresas = component$<SwitchPersonasEmpresasProps>((props) => {
@@ -40,12 +41,12 @@ export const SwitchPersonasEmpresas = component$<SwitchPersonasEmpresasProps>((p
 
   return (
     <div
-      class={styles.switchContainer}
+      class={`${styles.switchContainer} ${props.variant !== "mobile" ? styles.desktopVariant : ""}`}
       role="tablist"
       aria-label="Cambiar vista entre Personas y Empresas"
     >
-      <div class={styles.switchWrapper}>
-        <div class={styles.switchButtons}>
+      <div class={`${styles.switchWrapper} ${props.variant !== "mobile" ? styles.desktopVariant : ""}`}>
+        <div class={`${styles.switchButtons} ${props.variant === "mobile" ? styles.mobileVariant : ""}`}>
           {/* Personas Button */}
           <button
             onClick$={() => navigateToView("personas")}
@@ -137,17 +138,19 @@ export const SwitchPersonasEmpresas = component$<SwitchPersonasEmpresasProps>((p
           </button>
         </div>
 
-        {/* Sliding indicator with professional styling */}
-        <div
-          class={`${styles.slidingIndicator} ${
-            props.activeView.value === "personas" ? styles.active : ""
-          }`}
-          style={{
-            left: props.activeView.value === "personas" ? "4px" : "calc(50% + 4px)",
-            width: "calc(50% - 6px)"
-          }}
-          aria-hidden="true"
-        />
+        {/* Sliding indicator with professional styling - only for desktop variant */}
+        {props.variant !== "mobile" && (
+          <div
+            class={`${styles.slidingIndicator} ${
+              props.activeView.value === "personas" ? styles.active : ""
+            }`}
+            style={{
+              left: props.activeView.value === "personas" ? "4px" : "calc(50% + 4px)",
+              width: "calc(50% - 6px)"
+            }}
+            aria-hidden="true"
+          />
+        )}
       </div>
     </div>
   );

@@ -1,13 +1,15 @@
 /* Switch Personas/Empresas - Professional Styling */
 
-/* CSS Custom Properties for theming */
-.switchContainer {
-  --switch-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  --switch-bg-hover: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
-  --switch-bg-active: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
 
-  --indicator-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-  --indicator-shadow-active: 0 6px 20px rgba(51, 102, 255, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15);
+/* Mobile-first CSS Custom Properties */
+.switchContainer {
+  /* Mobile defaults (white background, no gradients) */
+  --switch-bg: white;
+  --switch-bg-hover: white;
+  --switch-bg-active: white;
+
+  --indicator-shadow: none;
+  --indicator-shadow-active: none;
 
   --button-text-active: #1e40af;
   --button-text-inactive: #64748b;
@@ -21,12 +23,50 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Mobile-first wrapper (full width, white bg) */
 .switchWrapper {
+  position: relative;
+  background: var(--switch-bg);
+  border-radius: 9999px;
+  padding: 6px;
+  box-shadow: none;
+  width: 100%;
+  margin: 0 0 0 0;
+  transition: none;
+
+  /* Hardware acceleration */
+  will-change: none;
+  transform: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Desktop variant overrides */
+.switchContainer.desktopVariant {
+  --switch-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --switch-bg-hover: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+  --switch-bg-active: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+
+  --indicator-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --indicator-shadow-active: 0 6px 20px rgba(51, 102, 255, 0.25), 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  --button-text-active: #1e40af;
+  --button-text-inactive: #64748b;
+  --button-text-disabled: #94a3b8;
+
+  --transition-duration: 300ms;
+  --transition-easing: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.switchWrapper.desktopVariant {
   position: relative;
   background: var(--switch-bg);
   border-radius: 50px;
   padding: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  margin: 0 auto;
+  max-width: 20rem;
+  width: auto;
   transition: all var(--transition-duration) var(--transition-easing);
 
   /* Hardware acceleration for smooth animations */
@@ -265,6 +305,67 @@
     -webkit-transform: none;
     -moz-transform: none;
   }
+}
+
+/* Mobile variant styles */
+.switchContainer.mobileVariant {
+  --switch-bg: white;
+  --switch-bg-hover: white;
+  --switch-bg-active: white;
+}
+
+.switchWrapper.mobileVariant {
+  background: white;
+  border-radius: 9999px;
+  padding: 6px;
+  box-shadow: none;
+  width: 100%;
+  margin: 0 0 0 0;
+  transition: none;
+  will-change: auto;
+  transform: none;
+}
+
+.switchWrapper.mobileVariant:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.switchButtons.mobileVariant {
+  gap: 4px;
+  z-index: 10;
+}
+
+.switchButtons.mobileVariant .buttonBase {
+  color: #1e40af;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  min-height: 44px;
+  position: relative;
+  z-index: 20;
+}
+
+.switchButtons.mobileVariant .buttonActive {
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.switchButtons.mobileVariant .buttonInactive {
+  background: transparent;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.switchButtons.mobileVariant .buttonBase:hover:not(:disabled) {
+  transform: none;
+}
+
+.switchButtons.mobileVariant .buttonBase:active:not(:disabled) {
+  transform: none;
 }
 
 /* Mobile optimizations */
