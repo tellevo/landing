@@ -49,11 +49,36 @@ export default component$(() => {
   return (
     <header class="font-sans bg-white shadow-sm sticky top-0 z-50 h-40">
       <div class="container mx-auto px-4 h-full">
-        <div class="flex items-center justify-between">
-          {/* Logo */}
-          <a href="/personas" class="flex items-center">
-            <LogoImg class="h-16 w-auto md:max-w-[240px] lg:max-w-[240px]" />
-          </a>
+        <div class="flex flex-col items-center">
+          {/* Switch + Hamburger on same row */}
+          <div class="flex items-center justify-center space-x-4">
+            <SwitchPersonasEmpresas
+              isLoading={isLoading}
+              activeView={activeView}
+              isMenuOpen={isMenuOpen}
+            />
+
+            {/* Hamburger Menu Button - Móvil */}
+            <button
+              class="md:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
+              onClick$={() => (isMenuOpen.value = true)}
+              aria-label="Abrir menú"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
 
           {/* Navegación principal */}
           <nav class="hidden md:flex space-x-4">
@@ -83,32 +108,10 @@ export default component$(() => {
             ))}
           </nav>
 
-          <SwitchPersonasEmpresas
-            isLoading={isLoading}
-            activeView={activeView}
-            isMenuOpen={isMenuOpen}
-          />
-
-          {/* Hamburger Menu Button - Móvil */}
-          <button
-            class="md:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
-            onClick$={() => (isMenuOpen.value = true)}
-            aria-label="Abrir menú"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+          {/* Logo */}
+          <a href="/personas" class="flex items-center">
+            <LogoImg class="h-16 w-auto md:max-w-[240px] lg:max-w-[240px]" />
+          </a>
 
           {/* Botones sociales */}
           <div class="hidden md:flex items-center space-x-4">
