@@ -8,11 +8,11 @@ interface ContenidoProps {
 
 export default component$((props: ContenidoProps) => {
   return (
-    <section class="relative overflow-hidden py-16 md:py-20">
+    <section class="py-10">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2 space-y-8 relative z-10">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#1054F1] font-sans">
+            <h1 class="text-left text-4xl md:text-5xl font-bold text-[#1054F1] font-sans">
               {props.texto}
             </h1>
             <div class="space-y-4">
