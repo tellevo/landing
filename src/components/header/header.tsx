@@ -49,44 +49,14 @@ export default component$(() => {
   return (
     <header class="font-sans bg-white shadow-sm sticky top-0 z-50 h-40">
       <div class="container mx-auto px-4 h-full">
-        <div class="flex flex-col items-center">
-          {/* Switch + Hamburger on same row */}
-          <div class="flex items-center justify-center space-x-4">
-            <SwitchPersonasEmpresas
-              isLoading={isLoading}
-              activeView={activeView}
-              isMenuOpen={isMenuOpen}
-            />
-
-            {/* Hamburger Menu Button - Móvil */}
-            <button
-              class="md:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
-              onClick$={() => (isMenuOpen.value = true)}
-              aria-label="Abrir menú"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-
+        <div class="flex flex-col items-center lg:flex-row lg:items-center lg:justify-between">
           {/* Logo */}
-          <a href="/personas" class="flex items-center">
+          <a href="/personas" class="flex items-center mb-4 lg:mb-0">
             <LogoImg class="h-16 w-auto md:max-w-[240px] lg:max-w-[240px]" />
           </a>
 
-          {/* Navegación principal no en mobile */}
-          <nav class="hidden md:flex space-x-4">
+          {/* Navegación principal no en modo mobile */}
+          <nav class="hidden md:flex space-x-4 mb-4 lg:mb-0">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -113,11 +83,16 @@ export default component$(() => {
             ))}
           </nav>
 
-       
-
-          {/* Botones sociales no en modo mobile */}
-          <div class="hidden md:flex items-center space-x-4">
-            <div class="flex space-x-3">
+          {/* Switch + Social + Hamburger on same row */}
+          <div class="flex items-center justify-center space-x-4">
+             
+             <SwitchPersonasEmpresas
+              isLoading={isLoading}
+              activeView={activeView}
+              isMenuOpen={isMenuOpen}
+            />
+            {/* Botones sociales no en modo mobile */}
+            <div class="hidden md:flex items-center space-x-3">
               <a href="https://www.facebook.com/tellevoapp.cl" target="_blank" rel="noopener" aria-label="Facebook" class="hover:opacity-90">
                 <i class="fab fa-facebook text-blue-600 hover:text-blue-800 cursor-pointer text-5xl" />
               </a>
@@ -125,6 +100,27 @@ export default component$(() => {
                 <i class="fab fa-instagram text-red-500 hover:text-blue-600 cursor-pointer text-5xl" />
               </a>
             </div>
+
+            {/* Hamburger Menu Button - Móvil */}
+            <button
+              class="md:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
+              onClick$={() => (isMenuOpen.value = true)}
+              aria-label="Abrir menú"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
