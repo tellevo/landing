@@ -80,7 +80,12 @@ export default component$(() => {
             </button>
           </div>
 
-          {/* Navegación principal */}
+          {/* Logo */}
+          <a href="/personas" class="flex items-center">
+            <LogoImg class="h-16 w-auto md:max-w-[240px] lg:max-w-[240px]" />
+          </a>
+
+          {/* Navegación principal no en mobile */}
           <nav class="hidden md:flex space-x-4">
             {navItems.map((item) => (
               <button
@@ -108,12 +113,9 @@ export default component$(() => {
             ))}
           </nav>
 
-          {/* Logo */}
-          <a href="/personas" class="flex items-center">
-            <LogoImg class="h-16 w-auto md:max-w-[240px] lg:max-w-[240px]" />
-          </a>
+       
 
-          {/* Botones sociales */}
+          {/* Botones sociales no en modo mobile */}
           <div class="hidden md:flex items-center space-x-4">
             <div class="flex space-x-3">
               <a href="https://www.facebook.com/tellevoapp.cl" target="_blank" rel="noopener" aria-label="Facebook" class="hover:opacity-90">
